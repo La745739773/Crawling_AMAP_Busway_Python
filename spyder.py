@@ -235,7 +235,10 @@ def Read_input_excel(xlsx_Address):
         #print(Amap_url)
         result_str = Crawing_Amap_busline(Amap_url)
         if result_str == 'failure':
-            break
+            while True:
+                result_str = Crawing_Amap_busline(Amap_url)
+                if result_str != 'failure':
+                    break
         elif result_str == 'Unfind':
             with open('parser_error/' + city_name + 'error.csv','a+') as file:
                 file.write(city_name + "," + key_Words + '\n')
